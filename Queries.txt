@@ -1,0 +1,22 @@
+## By:Hadeel Sameh Hassan
+
+# Question 1 :
+
+SELECT Beverage 
+FROM `drinkmenu` 
+WHERE Calories = (SELECT MAX(Calories) FROM `drinkmenu`);
+
+# Question 2 : 
+
+SELECT Beverage_category , AVG(Calories) 
+FROM `drinkmenu` 
+GROUP BY Beverage_category;
+
+
+
+# Question 3 :
+
+SELECT Beverage FROM `drinkmenu` 
+JOIN (SELECT Beverage_category as bc , AVG(Calories) as avgc FROM `drinkmenu` GROUP BY Beverage_category) r 
+ON Beverage_category = r.bc 
+WHERE Calories < r.avgc;
